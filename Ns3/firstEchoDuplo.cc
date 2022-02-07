@@ -57,7 +57,7 @@ main (int argc, char *argv[])
   //Ligando Nodes point-to-point
   PointToPointHelper pointToPoint;
   pointToPoint.SetDeviceAttribute ("DataRate", StringValue ("5Mbps"));
-  pointToPoint.SetChannelAttribute ("Delay", StringValue ("100ms"));
+  pointToPoint.SetChannelAttribute ("Delay", StringValue ("2ms"));
 
   //Ligando Nodes CSMA
   CsmaHelper csma;
@@ -114,8 +114,8 @@ main (int argc, char *argv[])
   clientApps.Stop (Seconds (10.0));
   //Instalando a aplicação cliente em n3
   ApplicationContainer clientApps2 = echoClient.Install(csmaNodes.Get(2));
-  clientApps.Start (Seconds (2.0));
-  clientApps.Stop (Seconds (10.0));
+  clientApps2.Start (Seconds (2.0));
+  clientApps2.Stop (Seconds (10.0));
 
   /* Usamos esse Helper para fazer toda a configuração de roteamento sem ter que configurar
    * nenhum roteador.
