@@ -1,4 +1,5 @@
-#Nosso Projeto
+# Nosso Projeto
+
 Nesse projeto estudamos e apresentamos os conceitos que regem uma simulação no NS3 juntamente com umexemplo nativo de sua biblioteca, durante a apresentação em sala. Nossa explicação sobre os
 conceitos chave do NS3 também está contida nesse documento README. 
 Adicionalmente, na semana que sucedeu a apresentação, conseguimos criar nossa própria simulação no
@@ -10,7 +11,7 @@ pcap quanto o arquivo simEchoDuplo.cc(Nossa simulação), comentado para maior e
 respectivas leituras Pcap. Recomendamos a leitura dos comentários no código simEchoDuplo.cc para
 entender as leituras pcap, que podem ser abertas com o Wireshark.
 
-#Sobre o NS3
+# Sobre o NS3
 
 O ns-3 é um simulador de eventos discretos normalmente executado a partir da linha de comando. 
 Ele é escrito diretamente em C++, eventos de simulação são simplesmente chamadas de função C++, 
