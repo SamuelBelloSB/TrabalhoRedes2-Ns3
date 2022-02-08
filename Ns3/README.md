@@ -1,3 +1,17 @@
+#Nosso Projeto
+Nesse projeto estudamos e apresentamos os conceitos que regem uma simulação no NS3 juntamente com umexemplo nativo de sua biblioteca, durante a apresentação em sala. Nossa explicação sobre os
+conceitos chave do NS3 também está contida nesse documento README. 
+Adicionalmente, na semana que sucedeu a apresentação, conseguimos criar nossa própria simulação no
+NS3! A partir de alterações do exemplo first.cc, botamos em prática os conceitos do NS3 criando uma
+simulação que explora duas topologias, ponta-a-ponta e CSMA; o programa simula o envio de um pacote echo por parte de dois computadores na rede CSMA para um servidor ligado por uma conexão ponta-a-
+ponta com essa subrede CSMA, que "ecoa" separadamente o pacote para cada um dos hosts que o enviou.
+Esse diretório contém tanto o arquivo first.cc(Apresentado em aula) com suas respectivas leituras
+pcap quanto o arquivo simEchoDuplo.cc(Nossa simulação), comentado para maior entendimento e com suas
+respectivas leituras Pcap. Recomendamos a leitura dos comentários no código simEchoDuplo.cc para
+entender as leituras pcap, que podem ser abertas com o Wireshark.
+
+#Sobre o NS3
+
 O ns-3 é um simulador de eventos discretos normalmente executado a partir da linha de comando. 
 Ele é escrito diretamente em C++, eventos de simulação são simplesmente chamadas de função C++, 
 organizadas por um agendador.
@@ -21,6 +35,10 @@ $ ./waf build
 
 Execute o seguinte comando para rodar um exemplo que disponibilizamos no código que esta no git hub:
 $  ./waf --run first
+
+Para rodar a simulação que criamos, copie o arquivo simEchoDuplo.cc para a pasta ns-3.35/scratch 
+Então volte para a pasta "ns-3.35" e execute o seguinte comando:
+$  ./waf --run scratch/simEchoDuplo.cc
 
 Mais informações podem ser encotradas na apostila de tutorial do ns-3:
 https://www.nsnam.org/docs/release/3.35/tutorial/ns-3-tutorial.pdf

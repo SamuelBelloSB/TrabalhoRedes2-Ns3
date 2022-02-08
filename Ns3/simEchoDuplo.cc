@@ -146,6 +146,7 @@ main (int argc, char *argv[])
 
   pointToPoint.EnablePcapAll("simEchoDuplo");
   csma.EnablePcap("simEchoDuplo", csmaDevices.Get(0), true);
+  //Leitura da rede csma em modo promiscuo irá sair em: simEchoDuplo-1-1.pcap
 
   //Iniciando o simulador e o destruindo quando a simulação termina
   Simulator::Run ();
