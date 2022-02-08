@@ -22,13 +22,31 @@
 #include "ns3/csma-module.h"
 #include "ns3/ipv4-global-routing-helper.h"
 
-// Default Network Topology
+// Essa é uma simulação criada pelo grupo ET-NET através da modificação da simulação first.cc
+// Topologia:
 //
 //               10.1.1.0            10.2.1.0
-// n0(servidor)-------------- n1--n2(cliente)---n3(cliente)
-//             point-to-point            CSMA
-//
- 
+// n0(servidor)---------------- n1--n2(cliente)---n3(cliente)
+//    Topologia ponta-a-ponta   / / / / / / / / / / / / / / / 
+//                              ==============================
+//                                     Topolgia CSMA
+
+
+/*O que acontece nessa simulação?
+ * São criadas duas topologias, a primeira é uma rede ponta-a-ponta entre os nós n0 e n1,
+ * a segunda é uma rede CSMA englobando os nós n1, n2 e n3.
+ * Os clientes n2(10.2.1.2) e n3(10.2.1.3) enviarão pacotes Echo para o servidor n0(10.1.1.1);
+ * o nó n1 fará apenas o papel de um roteador/switch, intermediando a conexão entre os demais 
+ * dispositivos.
+ * Ao receber cada pacote UDP, o servidor n0, no extremo da rede ponta-a-ponta, irá responder
+ * ecoando o pacote de volta para cada transmissor. A simulação termina quando cada emissor tiver
+ * recebido seu pacote Echo de volta.
+ * O dispositivo CSMA do nó n1 ficará em modo promiscuo, captando todos os pacotes que passarem
+ * por ele, para gerar uma leitura pcap contendo toda a movimentação que ocorreu na rede CSMA.
+ * Também serão geradas leituras pcap para os dois nós da rede ponta-a-ponta 
+ * (n0 e n1 em seu dispositivo point-to-point) permitindo uma leitura completa do tráfego
+ * nessa simulação.
+*/  
 using namespace ns3;
 
 NS_LOG_COMPONENT_DEFINE ("FirstScriptExample");
@@ -122,9 +140,14 @@ main (int argc, char *argv[])
   */
   Ipv4GlobalRoutingHelper::PopulateRoutingTables();
 
+  //Habilitando a geração de arquivos pcap;
+  //Formato em que os arquivos pcap saem: 
+  //<<nome_do_arquivo>>-<<nó_da_leitura>>-<<dispositivo_da_leitura>>.pcap
+
+  pointToPoint.EnablePcapAll("simEchoDuplo");
+  csma.EnablePcap("simEchoDuplo", csmaDevices.Get(0), true);
+
   //Iniciando o simulador e o destruindo quando a simulação termina
-  /* Os clientes n1 e n2 vão enviar pacotes para o servidor n0, que irá ecoar para ambos os
-   * clientes de forma separada. */
   Simulator::Run ();
   Simulator::Destroy ();
   return 0;
